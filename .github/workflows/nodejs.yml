@@ -37,7 +37,7 @@ jobs:
         npm test
     - name: Login to Docker Hub
       run: |
-        echo "::workflow-command parameter1={test.Docker_username},parameter2={test.Docker_password}::{command value}"
+        echo "::workflow-command parameter1=*{{test.Docker_username}},parameter2=${{test.Docker_password}}::{command value}"
         docker login --username "${{ test.Docker_username }}" --password "${{ test.Docker_password }}"
     - name: Build the Docker Image 
       run: docker build . --file Dockerfile --tag krishnaprasadkv/nodejs
